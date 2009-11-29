@@ -43,14 +43,19 @@ class invader():
 
     def save(self):
         filename = str(self.seed)
-        self.pixels.save(filename, "PNG")
+        self.pixels.save(filename + ".png", "PNG")
 
 if __name__ == '__main__':
-    if len(argv) <3: # this is love
-        print "Usage: every-possible-space-invader [start-seed] [end-seed]"
-    else:
+    if len(argv) < 2 or len(argv) > 3 :
+        print """Usage:
+            every-possible-space-invader [seed]
+            every-possible-space-invader [start-seed] [end-seed]"""
+    elif len(argv) <3: # this is love
+        a = invader(int(argv[1]))
+        a.save()
+    elif len(argv) == 3:
         start = int(argv[1])
         end = int(argv[2])
-        for i in range(start, end):
+        for i in range(start, end+1):
             a = invader(i)
             a.save()
